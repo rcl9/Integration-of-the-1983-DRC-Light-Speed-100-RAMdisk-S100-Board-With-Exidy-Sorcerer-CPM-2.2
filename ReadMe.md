@@ -1,4 +1,4 @@
-# Integration of the 1983-era DRC 'Light Speed 100 RAMdisk' S-100 Board With Exidy Sorcerer CPM 2.2
+# Integration of the 1983-era DRC 'Light Speed 100 RAMdisk' S-100 board with the Exidy Sorcerer + CP/M 2.2
 
 This repository provides a historical and archival overview of the 1983-era "Light Speed 100" (LS-100) 256k S-100 RAMdisk board produced by Digital Research Computers. This archive will also provides the custom BIOS source code written by the author back in July 1984 to tightly integrate this card as a virtual floppy disk drive on his Exidy Sorcerer computer running CP/M 2.2 with the [Morrow Disk Jockey 2D S-100 controller card](https://github.com/rcl9/Morrow-DJ2D-CPM-22-Recompile-From-Source). The primary reason this repository was written was because the information being provided herein was simply not available openly on the Internet. 
 
@@ -25,12 +25,14 @@ The author has scanned in his original [product manual](<Docs/'Light%20Speed%201
 ## Schematics
 
 The main logic:
+
 <div style="text-align:center">
 <img src="/Schematics/LS-100 schematics - Page 1 of 2.jpg" alt="" style="width:70%; height:auto;">
 </div>
 <br>
 
 And the 256k (4 x 64k) RAM banks:
+
 <div style="text-align:center">
 <img src="/Schematics/LS-100 schematics - Page 2 of 2.jpg" alt="" style="width:70%; height:auto;">
 </div>
