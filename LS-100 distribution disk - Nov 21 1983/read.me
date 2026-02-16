@@ -1,0 +1,88 @@
+                          LS-100 UPDATE
+
+                            11/21/83
+
+
+     Three New programs are now included on the distribution 
+disk.  The  LS-100  driver (DRV2.ASM) can now  be  relocated 
+above  the  BIOS,  where as the other driver  (DRV1.ASM)  is 
+relocated   below   the   CCP   by   the   install   program 
+(INSTALL.ASM).
+
+     1)  LS-100.ASM  - Is a revised driver  relocator  which 
+allows  you to specify the load address of the LS-100 driver 
+which would normally be above CP/M.  This allows you to have 
+a maximum CP/M system size.  Note that this loader should be 
+run ONCE per cold boot as it does not check to see if it has 
+been previously loaded.
+
+     2)  DRV2.ASM - Is a revised LS-100 driver to be  loaded 
+by the LS-100.ASM program.  This program currently  requires 
+618  bytes of ram.  If you make any changes to the driver be 
+sure to update the DRVSZ equate in the LS100.ASM file so the 
+correct amount of code will be moved. 
+
+     3)  FIND.ASM  - Is  a program  that  will  display  the 
+current address of the BIOS and BDOS jump vectors. This will 
+allow you to enter these values directly into the driver and 
+relocator program.
+
+
+     Also  find ready to run versions of the LS-100  overlay 
+software.  These  files  are for a standard  CP/M  O.S.  and 
+relocate the LS-100 driver below the CCP.  The base I/O port 
+is equated to D0H and the LS-100 is assigned to drive E. 
+
+     LS48.COM - is for a 48k CP/M
+     LS56.COM - is for a 56K CP/M
+     LS60.COM - is for a 60K CP/M
+     LS63.COM - is for a 63K CP/M
+
+     There  is also an ap note being published for the NORTH 
+STAR system on how to intergrate the LS-100 driver into  the 
+NORTH  STAR  BIOS.  For futher information contact EWING  at 
+DIGITAL RESEARCH COMPUTERS.  
+
+                       P R O B L E M S !!!
+
+     The previous INSTALL and DRIVER programs used the  CP/M 
+system  size  value  to compute the BIOS and  BDOS  address. 
+However some implementations of CP/M have a negative  offset 
+from   the  standard  values  as  described  in  the  System 
+Alteration  Guide.  In  which case the  INSTALL  and  DRIVER 
+programs  computed  the  wrong  values  when  assembled.  To 
+correct  this problem a FIND program has been included which 
+will display the current BIOS and BDOS values.  You can  now 
+use  these values in the source code of both the DRIVER  and 
+INSTALL programs instead of the CP/M MSIZE equate. 
+
+
+                          MANUAL UPDATE
+
+   The  following  typeos  have been noted  in  the  manual. 
+Please make the following changes.
+
+     1) Page IV-3 Last paragraph.
+
+        IDRV1.HEX<cr> r,(offset) 
+         correct to:
+        IDRV1.HEX<cr> r(offset)
+
+     2) Page IV-4 Under customizing the install program.
+
+        List the DRV1.PRN file and obtian the value for DRV1.
+         correct to :
+        List the INSTALL.PRN file and obtain the value for DRV1
+
+
+     3) Page IV-4 Under sample install session.
+
+        R,4000<cr>
+         correct to :
+        R4000<cr>
+
+     4) Page IV-5 Last paragraph.
+
+        CALC:  LXI  TRACK     ;SET HL @ TRACK#
+         correct to :
+        CALC:  LXI  H,TRACK   ;SET HL @ TRACK#

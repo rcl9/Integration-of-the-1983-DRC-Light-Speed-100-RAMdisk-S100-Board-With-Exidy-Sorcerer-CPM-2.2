@@ -1,0 +1,1717 @@
+.OP
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                       "Light Speed - 100"
+
+                           256K  S-100
+
+                         DISK SIMULATOR
+
+                       COPYRIGHT (c) 1983 
+
+                   DIGITAL RESEARCH COMPUTERS
+
+.PAŠ.he                     Table of Contents
+
+SECTION                                                   PAGE
+
+   I    GENERAL INFORMATION
+
+     1.1   Limited Warranty                                I-1
+     1.2   Software Disclaimer                             I-1
+     1.3   Features                                        I-2
+     1.4   LS-100 Overview                                 I-3
+     1.5   Table 1-1 Storage Capacity                      I-4
+
+  II   ASSEMBLY
+
+     2.1   Construction Hints                             II-1
+     2.2   Parts List                                     II-2
+     2.3   Assembly Procedure                             II-4
+
+ III   BOARD SETUP
+
+     3.1   I/O Base Port Addressing (S1)                 III-1
+     3.2   Board Select (S2)                             III-1
+     3.3   Jumper Options                                III-1
+     3.4   8080 Setup Chart                              III-3
+     3.5   Z80 Setup Chart                               III-4
+     3.6   Table 3-1 I/O Port Addressing                 III-5
+     3.7   Battery Back up Option                        III-7
+     3.8   Status LEDs                                   III-7
+
+ IV    SOFTWARE
+
+     4.1   Diagnostic Program                             IV-1
+     4.2   Format Program                                 IV-2
+     4.3   Install Program                                IV-3
+     4.4   Install Program Incompatabilities              IV-5
+ 
+ V     USING THE LS-100
+
+     5.1   How to use the LS-100                           V-1
+
+ VI    BIOS INTEGRATION
+
+     6.1   LS-100 Register Description                    VI-1 
+     6.2   Bios Integration                               VI-3
+     6.3   Disk Parameter Blocks                          VI-8
+
+VII    THEORY OF CIRCUIT OPERATION
+
+     7.1   Circuit Description                           VII-1
+
+APPENDICES
+
+     I     ERROR MESSAGES
+     II    COMPONENT LOCATION DIAGRAM
+.paŠ.he                                                 Section I
+
+
+1.1                      LIMITED WARRANTY
+
+
+     Reaä  thå  encloseä  yello÷  sheeô foò á  statemenô  oæ  ouò 
+limited warranty as related to this kit.
+
+     Alsï  notå  thaô wheî thió producô ió purchaseä aó  á  blanë 
+board¬  alì  thaô  ió covereä bù thå limiteä warrantù ió  thå  PÃ 
+board itself.
+
+     Undeò  nï  circumstancå shoulä yoõ cuô anù traceó oî thå  PÃ 
+board®  Tï dï sï wilì VOIÄ youò warrantù anä wå wilì noô  servicå 
+anù cuô oò modifieä board.
+
+
+
+
+
+
+
+
+1.2                    SOFTWARE DISCLAIMER
+
+
+     Digitaì  Researcè  Computeró  makeó  nï  representationó  oò 
+warrantieó witè respecô tï thå softwarå supplieä witè thå  LS-10° 
+boarä  anä  specificallù  disclaimó  anù  implieä  warrantieó  oæ 
+merchantabilitù  oò fitnesó foò anù particulaò  purpose®  Futher¬ 
+Digitaì  Researcè  Computeró  reserveó thå righô  tï  reviså  thå 
+includeä  softwarå  froí timå tï timå withouô anù  obligatioî  oæ 
+Digitaì  Researcè Computeró tï notifù anù persoî oò  organizatioî 
+oæ sucè revisionó oò changes.
+
+.fo                            Page I-1
+.PAŠ.he                                                  Section I
+.pn
+
+
+                   DIGITAL RESEARCH COMPUTERS
+                         P.O. BOX 461565
+                      GARLAND, TEXAS 75046
+                         (214)-271-3538
+
+
+
+
+
+1.3                       LS-100 FEATURES
+
+
+
+USES FIVE VOLT ONLY 64K x 1 DYNAMIC RAMS
+
+USEÓ INTEÌ 820³-1 DYNAMIÃ RAÍ CONTROLLEÒ 
+
+PROVIDES 256K BYTES PER BOARD OF ON LINE STORAGE
+
+REQUIRES ONLY FOUR I/O PORTS FOR OPERATION (DIP SWITCH SELECTABLE)
+
+EXPANSION OF UP TO EIGHT BOARDS PROVIDING 2 MEGABYTES OF STORAGE
+
+INTERFACES WITH 8080 OR Z80 PROCESSOR BOARDS
+
+PROVISION FOR EXTERNAL POWER OR BATTERY BACKUP
+
+BOARD SELECT AND ACCESS STATUS LED INDICATORS
+
+LOW POWER (600 MA. TYPICAL)
+
+DOUBLE SIDED PC BOARD WITH PLATED THROUGH HOLES
+
+SILK SCREENED COMPONENT LEGEND AND SOLDER MASKED
+
+GOLD PLATED FINGERS
+
+FULLY BUFFERED AND BYPASSED
+
+IEEE 696 S-100 BUS COMPATABILE (as proposed)
+
+OVERLAY¬ FORMATTER¬ ANÄ DIAGNOSTIÃ SOFTWARE PROVIDEÄ (CP/Í  2.² REQ.)
+
+
+
+.FO                            Page I-2
+.PAŠ.he                                                  Section I
+
+
+1.4                          OVERVIEW
+
+
+
+    Thå  LS-10°  boarä  ió  á higè densitù memorù boarä  thaô  ió 
+organizeä aó aî arraù oæ fouò bankó bù eighô bitó oæ 64Ë  dynamiã 
+rams®  Thå LS-10° provideó thå useò witè á totaì oæ 262,14´ byteó 
+oæ  memorù  thaô ió I/Ï mapped®  Onå LS-10°  boarä  provideó  thå 
+equvalenô storagå oæ aî ¸ incè singlå sideä singlå densitù floppù 
+disë drive®   
+
+     Fouò  I/Ï  portó arå requireä tï controlì thå LS-10°  board® 
+Theså  portó  arå  switcè selectablå  tï  anù   fouò  consecutivå 
+portó  oæ  thå 25¶ thaô arå available®  Therå caî bå uğ tï  eighô  
+LS-10° boardó witè thå samå baså I/Ï porô address¬  providinç thå 
+useò witè 2,097,15² byteó oæ oî linå storage®  Iæ morå storagå ió 
+required¬   theî fouò morå I/Ï portó wilì havå tï bå assigneä  tï 
+thå nexô grouğ oæ eighô boards®           
+
+     Eacè  LS-10°  boarä  caî addresó 2,04¸  12¸  bytå  pageó  oò 
+"sectors"®  Iî ordeò tï addresó thå LS-10° board¬ thå floppù disë 
+tracë  anä  sectoò numberó thaô arå provideä bù CP/Í arå useä  bù 
+thå  driveò prograí tï generatå aî  addresó thaô wilì supporô  uğ 
+tï eighô  LS-10° boards® Thió provideó á totaì oæ 16,38´ 12¸ bytå 
+pageó oò "sectors¢ oæ storage® 
+
+     Datá  integritù ió maintaineä bù á softwarå generateä  checë 
+suí bytå thaô ió computeä oî eacè 12¸ bytå sectoò aî storeä iî  á 
+reserveä area®  Oî eacè 12¸ bytå sectoò read¬  thå checë suí bytå 
+ió  re-computeä anä compareä witè thå orginaì checksuí bytå  thaô 
+waó  generateä  wheî thå datá waó stored®   Iæ á erroò  conditioî 
+occuró  thå useò ió prompteä aó tï whicè LS-10° boarä  thå  erroò 
+occureä  on¬  allowinç  quicë issolatioî oæ á faulô tï thå  boarä 
+level.
+
+     Thå  LS-10°   provideó á dramatiã speeä improvemenô iî  disë 
+intensivå  softwarå  bù  usinç semiconductoò memorù  foò  storagå 
+insteaä oæ magnetiã media®  Sucè programó aó higè leveì languageó 
+likå PASCAL¬  FORTRAN¬  PLI-80¬  ect®  wilì executå froí · tï  1° 
+timeó fasteò wheî compareä tï á floppù disë drive® Otheò programó 
+sucè  aó  editoró wilì alsï benifiô iî improveä  performacå  wheî 
+excuteä oî thå LS-100¬  aó theså programó frequentlù uså overlayó 
+thaô musô bå reaä iî froí thå disë drive®  Oncå yoõ havå useä thå 
+LS-10° yoõ wilì neveò wanô tï WAIT oî á floppù disë drive again.
+
+
+
+
+
+
+* CP/M  is a registered trade mark of DIGITAL RESEARCH (California) 
+
+.FO                            Page I-3
+.PAŠ.he                                               Section I
+                            TABLE 1-1  
+
+
+1.5                      Storage Capacity
+
+
+     Thå  followinç tablå provideó thå  storagå capacitù thaô caî 
+bå achiveä baseä oî thå numbeò oæ LS-10° boardó iî thå system.
+
+
+Numbeò oæ Boardó          Max® Dir® Entr®     Storage iî Kilobytes
+ 
+     1                          128  (4k)             254
+
+     2                          128  (4k)             508
+
+     3                          256  (8k)             760
+
+     4                          256  (8k)            1016
+
+     5                          512  (16k)           1264
+
+     6                          512  (16k)           1520
+
+     7                         1024  (32k)           1776
+
+     8                         1024  (32k)           2032
+
+.FO                            Page I-4
+.paŠ.he                                                  Section II
+
+2.1                 GENERAL CONSTRUCTION HINTS
+
+
+     Foò  solderinç wå recommenä á 3² watô solderinç  pencil®  Dï 
+noô uså á solderinç guî !!¡ Uså smalì diameteò (sucè aó 2² gauge© 
+rosiî corå 60/4° alloù solder.
+
+Keep the soldering tip clean with a wet sponge or cloth.
+
+
+
+     Afteò  sucè componentó aó resistoró oò capacitoró havå  beeî 
+soldered¬  uså  á  smalì paiò oæ diagonaì cutteró tï  removå  thå 
+excesó  leaä  length®  CAUTION¬  WEAÒ EYÅ PROTECTIOÎ  GOGGLEÓ  TÏ 
+PREVENÔ INJURÙ TÏ YOUÒ EYES.
+
+
+Observe polarities on all tantalum caps and LEDs.
+
+
+
+     Iæ  yoõ noticå anù discrepancieó betweeî thå partó  receiveä 
+anä thoså listed¬ pleaså notifù us.
+.FO                            Page II-1
+.pa.he                                                  Section IIŠ
+
+2.3                         PARTS LIST
+
+
+1         40 pin Socket
+
+4         20 pin Sockets
+
+39        16 pin Sockets
+
+7         14 pin Sockets
+
+2         LEDs
+
+3         10 pin SIP resistor packs (3.3k to 4.7k)
+
+1         20 MHZ crystal
+
+4         33 ohm 1/4 watt resistors
+
+2         330 ohm 1/4 watt resistors
+
+1         680 ohm 1/4 watt 5% resistor
+
+1         1k ohm 1/4 watt 5% resistor
+
+2         1N4002   diode
+
+51        .1 mfd Bypass Caps
+
+4         10 mfd. 15 VDC tantalums caps (or larger)
+
+7         6.8 mfd. 10 VDC axial lead caps (or larger)
+
+2         7805 +5 VDC voltage regulaters
+
+2         TO-220 heatsinks with hardware
+
+2         8 position DIP switches
+
+1         4-pin right angle molex connector
+
+2         3 position single row jumper blocks
+
+2         3 position double row jumper blocks
+
+4         shorting plugs
+
+1         printed circuit board
+
+1         74LS00
+
+1         7406 or 7416
+.fo                            Page II-2
+.pa   Š.he                                               Section II
+
+                        PARTS LIST Cont.
+
+
+1         74S08  (do not substitute)
+
+1         74LS14
+
+1         74LS32
+
+2         74S32  (do not substitute)
+
+1         74LS138
+
+1         74LS139
+
+1         74LS155
+
+2         74LS193
+
+1         74LS244
+
+1         74LS373
+
+2         74LS374
+
+1         74LS367A or 8T97 or DM8097
+
+1         DM8131
+
+1         8203-1 
+
+3²        MK4564P-20 Mostek 64K Dynamiã ramó 
+          (Oò equivalenô witè aî accesó timå oæ 25°  ns® oò faster.) 
+
+          (NOTE: C5 and C7 are not supplied with the kit as these
+                 caps are only required for fundamental crystals.
+                 Iæ á fundamentaì crystaì ió useä for XY1 then 
+                 install a 3-10 pf. cap at locations Cµ anä C·.)
+
+
+
+
+.fo                            Page II-3
+.paŠ
+.he                                                  Section II
+
+2.3                     ASSEMBLY PROCEDURE 
+
+
+[İ    Givå thå PÃ boarä á gooä visuaì inspectioî foò anù  obviouó 
+shortó oò opens®  Therå shoulä bå none¬  buô á fe÷ minuteó  spenô 
+herå coulä savå houró later.
+
+[İ    Usinç aî ohmmeter¬  ensurå thaô therå arå nï shortó betweeî 
+BUS pinó ± anä 50.
+
+[İ   Instalì anä soldeò 3² 1¶ piî socketó aô locationó Y± througè 
+Y32® Notå thaô piî #± ió orienteä tï thå toğ oæ thå PÃ board.
+
+[İ   Instalì anä soldeò · 1¶ piî socketó aô locationó  Z3¬  Z5¬ 
+Z12¬ Z13¬ anä Z18-Z20® Notå thaô piî #± ió orienteä tï thå toğ oæ 
+thå PÃ board.
+
+[İ   Instalì anä soldeò · 1´ piî socketó aô locationó  Z4¬  Z6¬ 
+Z9¬  Z10¬ anä Z15-Z17® Notå thaô piî #± ió orienteä tï thå toğ oæ 
+thå board.
+
+[İ   Instalì anä soldeò ´ 2° piî socketó aô locationó Z11¬  Z14¬ 
+Z22¬  anä  Z23®  Notå  thaô piî #± ió orienteä tï thå toğ oæ  thå 
+board.
+
+[İ   Instalì anä soldeò thå 4° piî sockeô aô locatioî  Z7®  Notå 
+that pin #1 is oriented to the left of the board.
+
+[İ   Instalì  anä  soldeò threå 1° piî  SIĞ  resistoò  packó  aô 
+locationó Z8¬ Z21¬ anä Z24® Piî #± ió uğ oî theså parts.
+
+
+[İ   Instalì anä soldeò thå fouò  radiaì leaä tantaluí capó  aô 
+locationó C1¬ C2¬ C3¬ C4® Pleaså observå thå propeò polaritù wheî 
+installinç theså parts®     
+
+[İ   Instalì anä soldeò thå bypasó capó iî locationó C6¬ anä C8-
+C57.
+
+[İ   Instalì anä soldeò seveî axiaì leaä capó aô locationó  C58¬ 
+C59¬  C60¬ C61¬ C62¬ C63¬ C64® Pleaså observå thå propeò polaritù 
+wheî installinç theså parts.
+
+[İ   Instalì anä soldeò thå twï diodeó iî locationó D1¬  anä D2® 
+Pleaså observå thå propeò polaritù wheî installinç theså parts.
+
+[İ   Instalì anä soldeò thå twï LEDó aô locationó DS± anä  DS2® 
+Thå cathodå (denoteä bù thå flaô side© goeó towarä thå lefô  sidå 
+oæ thå board.
+
+.fo                            Page II-4
+.paŠ.he                                               Section II
+
+                    ASSEMBLY PROCEDURE Cont.
+
+
+[İ   Instalì anä soldeò thå 2° MHÚ crystaì aô locatioî XY1® 
+
+[İ   Instalì  anä soldeò twï 33° ohí resistoró aô locationó  Rµ 
+and R6.
+
+[İ   Instalì anä soldeò á 68° ohí resistoò aô locatioî R8.
+
+[İ   Instalì anä soldeò á 1Ë ohí resistoò aô locatioî R7.
+
+[İ   Instalì  anä soldeò fouò 3³ ohí resistoró aô locationó  R1¬ 
+R2¬ R3¬ anä R4.
+
+[İ   Instalì  anä  soldeò twï eighô positioî  diğ  switcheó  aô 
+locationó S1¬  anä S2®  Switcè positioî onå ió towarä thå toğ  oæ 
+thå board® 
+
+[İ   Instalì anä soldeò thå fouò piî  moleø connectoò aô positioî 
+B2.
+
+[İ   Instalì  anä  soldeò  á  single row threå  positioî  jumper
+blocë  aô locations J1-J2.
+
+[İ   Instalì  anä  soldeò  á  single row three  position  jumpeò 
+blocë  aô locations J3-J4.
+
+[İ   Instalì anä soldeò á doublå ro÷ threå positioî jumpeò  blocë 
+aô locatioîs J5-J7.
+
+[İ   Instalì anä soldeò á doublå ro÷ threå positioî jumpeò blocë 
+at locations J8-J10. 
+
+[İ   Usinç  thå  heatsinkó anä hardwarå  supplieä  instalì  anä 
+soldeò thå twï 780µ voltagå regulatoró aô locationó Z± anä Z2.
+
+[İ   Usinç anù oæ thå regulatoò mountinç tabó aó ground¬ measurå 
+thå  outpuô  oæ eacè 780µ voltagå regulatoò undeò poweò  iî  youò 
+system®  Thå outpuô ió measureä oî thå righô piî oæ thå 7805® Thå 
+measureä  voltagå  shoulä  bå  betweeî 4.7µ  anä  5.2µ  VDC®  Anù 
+regulatoò ouô oæ speã musô bå replaced.
+
+[İ  Instalì á 74LS0° iî sockeô locatioî Z10®  Piî #± ió tï  thå 
+top.
+
+[]  Install a 7406 in socket location Z6. Pin #1 is to the top.
+
+[İ  Instalì á 74S0¸ iî sockeô locatioî Z9® Piî #± ió tï thå top.
+
+.fo                            Page II-5
+.paŠ.he                                                  Section II
+
+                    ASSEMBLY PROCEDURE Cont.
+
+
+
+[İ   Instalì á 74LS1´ in sockeô locatioî Z16®  Piî #± ió tï  thå 
+top.
+
+[İ   Instalì á 74LS3² iî sockeô locatioî Z17®  Piî #± ió tï  thå 
+top.
+
+[İ   Instalì a 74S3² iî socketó locationó Z4¬  anä Z15® Piî #± 
+ió tï thå top.
+
+[İ   Instalì á 74LS13¸ iî sockeô locatioî Z3®  Piî #± ió tï thå 
+top.
+
+[İ   Instalì á 74LS13¹ iî sockeô locatioî Z5®  Piî #± ió tï  thå 
+top.
+
+[İ   Instalì á 74LS15µ iî sockeô locatioî Z18®  Piî #± ió tï thå 
+top.
+
+[İ   Instalì a 74LS19³ iî sockeô locationó Z12¬  anä Z13®  Piî 
+#± ió tï thå top.
+
+[İ   Instalì á 74LS24´ iî sockeô locatioî Z22®  Piî #± ió tï  thå 
+top.
+
+[İ   Instalì á 74LS37³ iî sockeô locatioî Z23®  Piî #± ió tï thå 
+top.
+
+[İ   Instalì á 74LS37´ iî sockeô locationó Z11¬  anä Z14®  Piî #± 
+ió tï thå top.
+
+[İ   Instalì á 74LS367Á iî sockeô locatioî Z19®  Piî #± ió tï thå 
+top.
+
+[İ   Instalì á DM813± iî sockeô locatioî Z20®  Piî #± ió tï  thå 
+top.
+
+[İ   Instalì á 8203-±  iî sockeô locatioî Z7®  Piî #± ió tï  thå 
+left.
+
+[İ   Instalì 3² 64Ë Dynamiã RAMÓ iî sockeô locationó Y1-Y32®  Piî 
+#± ió tï thå top.
+
+[İ   Instalì  thå boarä iî youò systeí anä remeasurå thå  voltagå 
+regulatoò  outputó  tï  ensurå  propeò  operation®  (Noteº  Neveò 
+instalì oò removå thå boarä wheî poweò ió applied.)
+
+
+.fo                            Page II-6
+.paŠ.he                                               Section III
+                           Board Setup
+
+
+3.1                  I/O BASE PORT ADDRESSING
+
+                         Dip Switch S-1
+              
+     Á  grouğ  oæ  fouò  consecutivå I/Ï portó  arå  requireä  tï 
+addresó thå LS-10° board® Diğ switcè S-± setó thå baså addresó oæ 
+theså ports®  Switcè positioî ± correspondó tï addresó biô A· anä 
+switcè  positioî  ¶ correspondó tï addresó biô A2¬  providinç  6´ 
+possiblå baså addresseó oæ thå 25¶ thaô arå available®  Tablå 3-± 
+provideó thå 6´ possiblå baså I/Ï porô addresses®  Foò  operatioî 
+witè  thå supplieä softwarå  seô thió switcè foò baså porô D0È bù 
+settinç switcheó 3,5¬  anä ¶ iî thå oî positioî anä switcheó 1,2¬ 
+anä  ´  iî thå ofæ position®  Iæ thió conflictó  witè  anù  otheò 
+boardó  iî youò systeí theî selecô á ne÷ grouğ oæ I/Ï portó  froí 
+Tablå 3-1¬ anä modifù thå softwarå accordingly.
+
+
+
+
+3.2                        BOARD SELECT
+
+                         Dip Switch S-2
+
+     Diğ  switcè S-² provideó á onå oæ eighô boarä selecô decode® 
+Aó morå LS-10° boardó arå installeä intï thå system¬  eacè  boarä 
+wilì  havå á differenô boarä addresó (i.e®  thå firsô boarä  wilì 
+havå  switcè  positioî  ± closed¬  thå seconä  wilì  havå  switcè 
+positioî  ² closeä etc.© Notå thaô onlù onå switcè positioî oî  á 
+boarä  shoulä  bå closeä aô á time®  Foò boarä #1¬  closå  switcè 
+positioî ± anä opeî switcè positionó 2-8.
+
+
+
+3.3                       JUMPER OPTIONS
+
+3.3.1             Software Power Down Write Protect
+
+                              J1-J2
+
+     Iæ  yoõ  arå goinç tï utilizå thå stand-bù poweò  optioî  tï 
+poweò  thå  LS-10° boarä wheî youò systeí ió off¬  theî  placå  á 
+jumpeò  aô J2®  Iæ yoõ choså noô tï uså thió optioî theî placå  á 
+jumpeò aô J1®  (Noteº Wheî thå LS-10° boarä ió poweò "dowî  writå 
+protected¢ anù attempô tï reaä oò writå tï thå datá transfeò porô 
+wilì  causå  thå CPÕ tï locë uğ untiì á reseô ió applieä  tï  thå 
+CPU.)
+.fo                           Page III-1
+.paŠ.he                                               Section III
+
+                      JUMPER OPTIONS Cont.
+
+
+
+
+3.3.2                 Advanced or Normal Ready
+
+                              J3-J4
+
+     Baseä   oî   youò  systeí  requirements¬   eitheò   transfeò 
+acknowledgå  XACË (normaì ready© oò thå systeí  acknowledgå  SACË 
+(advanceä ready© signaì caî bå useä tï generatå thå CPÕ processoò 
+readù  signaì  (PRDY)®  XACË ió generallù used¬  howeveò iæ  youò 
+systeí caî toleratå aî advanceä ready¬ theî SACË caî bå used¬ buô 
+onlù  iæ  thå thå CPÕ iî youò systeí caî toleratå thå  amounô  oæ 
+advanceä readù provideä bù thå 820³ controller®  Iæ SACË ió  useä 
+nï  waiô stateó arå introduceä durinç datá transfers®  Iæ XACË ió 
+useä  theî  twï tï threå waiô stateó arå inserteä  oî  eacè  datá  
+transfer®  Foò  normaì readù placå á jumpeò aô J4®  Foò  advanceä 
+readù  placå  á jumpeò aô J3®  Tï determinå iæ youò  systeí  wilì 
+toleratå  aî advanceä ready¬  ruî thå diagnostiã program®  Iæ  iô 
+wilì  ruî withouô anù erroró theî alì ió probablù ok®  Iæ yoõ geô 
+randoí erroró theî yoõ wilì havå tï selecô  normaì ready®  (Noteº 
+Foò morå infomatioî refeò tï thå Memorù Componentó Handbooë  froí 
+Inteì oî thå 820³ Dynamiã Raí Controller.)
+
+
+
+
+3.3.3                    Refresh Select
+
+                      J5-J6-J7   J8-J9-J10
+
+     Thå  820³  controlleò haó twï wayó oæ providinç dynamiã  raí 
+refresh®  Internaì oò Externaì (hidden© refresh®  Botè typeó  arå 
+supporteä  bù  thå  LS-10°  board®  Iæ youò  processoò  doeó  noô 
+generatå  á  refresè  signaì sucè aó aî 808°  theî  thå  Internaì 
+refresè modå wilì havå tï bå selecteä bù placinç á jumpeò aô  J5® 
+Howeveò  manù  Z8°  processoò boardó generatå á  refresè  signal® 
+Unfortunatelù  thå leveì anä buó piî numbeò useä foò thå  refresè 
+signaì oî oldeò CPÕ boardó ió noô welì defined®  Thå LS-10° boarä 
+supportó  botè Higè truå anä Lo÷ truå refresè signaì  levels®  Iæ 
+youò  processoò  supportó  Refresè baò (lo÷ true©  theî  placå  á 
+jumpeò aô J7® Iæ youò processoò supportó Refresè (higè true© theî 
+placå á jumpeò aô J6®  Buó pinó 21¬ 65¬ anä 6¶ havå beeî provideä 
+foò thå refresè signal®  Tï uså buó piî 2± placå á jumpeò aô J10® 
+Tï uså buó piî 6µ placå á jumpeò aô J9® Tï uså buó piî 6¶ placå á 
+jumpeò aô J8®  Notå thaô yoõ noô havå tï uså thå Externaì refresè 
+modå  aó  thå 820³ wilì providå alì refresè cycleó  aó  required® 
+Howeveò  iæ thå Externaì refresè modå ió useä alì datá  transferó 
+tï  anä froí thå LS-10° wilì bå aô fulì processoò speed®  Iæ  thå 
+Internaì refresè modå ió useä theî waiô stateó wilì bå introduceä 
+aó datá transfer cycles anä refresè cycleó coinside.
+.fo                           Page III-2
+.paŠ.he                                               Section III
+
+
+3.4            SETUP CHART FOR 8080 BASED SYSTEMS
+
+
+                    I/O PORT BASE ADDRESS D0H
+
+                    POWER DOWN MODE SELECTED
+
+                      NORMAL READY SELECTED
+
+                    INTERNAL REFRESH SELECTED
+
+
+
+
+
+[İ   Diğ Switcè S2  Switcè positioî ± closeä           ;selecô board
+                    Switcè positionó 2-¸ opeî          ;#1
+
+[İ   Diğ Switcè S1  Switcè positionó 3,5,¶ closeä      ;set base
+                    Switch positions 1,2,4 open        ;I/O port
+                    Switcè positionó ·,8 noô useä      ;addresó to D0H
+
+[İ   Jumper at J4                                      ;normaì ready
+                                            
+[İ   Jumpeò at J2                                      ;select poweò
+                                                       ;down mode
+
+[İ   Jumpeò at J5                                      ;selecô internal
+                                                       ;refresè mode
+
+
+.fo                           Page III-3
+.paŠ                                                  
+
+
+3.5             SETUP CHART FOR Z80 BASED SYSTEMS
+
+
+                    I/O PORT BASE ADDRESS D0H
+
+                    POWER DOWN MODE SELECTED
+
+                     ADVANCED READY SELECTED
+
+            EXTERNAL REFRESH ON BUS PIN 66 HIGH TRUE
+
+
+
+
+
+[]   Dip Switch S2  Switch position 1 closed         ;select board
+                    Switch positions 2-8 open        ;# 1
+
+[]   Dip Switch S1  Switch positions 3,5,6 closed    ;set base
+                    Switch positions 1,2,4 open      ;I/O port
+                    Switcè positionó 7,¸ noô useä    ;addresó tï D0H
+
+[İ   Jumpeò at J3                                    ;Advanceä ready
+
+[İ   Jumpeò at J2                                    ;Selecô power
+                                                     ;down mode
+
+[]   Jumper at J6                                    ;Refresh
+                                                     ;high true
+
+[İ   Jumpeò at J9                                    ;Refresè signal
+                                                     ;oî buó piî 66 
+.fo                           Page III-4
+.paŠ.he                                               Section III
+                            Table 3-1
+
+
+3.6                    I/O Port Addressing
+
+
+       S-1                                      
+
+  Switch Positions                            Base I/O 
+
+  (0=closed/1=open)                          Port   Address
+
+  1  2  3  4  5  6
+--------------------------------------------------------------
+  0  0  0  0  0  0                            0 0 - 0 3 H
+  0  0  0  0  0  1                            0 4 - 0 7 H        
+  0  0  0  0  1  0                            0 8 - 0 B H 
+  0  0  0  0  1  1                            0 C - 0 F H
+  0  0  0  1  0  0                            1 0 - 1 3 H
+  0  0  0  1  0  1                            1 4 - 1 7 H
+  0  0  0  1  1  0                            1 8 - 1 B H
+  0  0  0  1  1  1                            1 C - 1 F H
+  0  0  1  0  0  0                            2 0 - 2 3 H
+  0  0  1  0  0  1                            2 4 - 2 7 H
+  0  0  1  0  1  0                            2 8 - 2 B H   
+  0  0  1  0  1  1                            2 C - 2 F H
+  0  0  1  1  0  0                            3 0 - 3 3 H
+  0  0  1  1  0  1                            3 4 - 3 7 H
+  0  0  1  1  1  0                            3 8 - 3 B H
+  0  0  1  1  1  1                            3 C - 3 F H
+  0  1  0  0  0  0                            4 0 - 4 3 H
+  0  1  0  0  0  1                            4 4 - 4 7 H
+  0  1  0  0  1  0                            4 8 - 4 B H
+  0  1  0  0  1  1                            4 C - 4 F H
+  0  1  0  1  0  0                            5 0 - 5 3 H
+  0  1  0  1  0  1                            5 4 - 5 7 H
+  0  1  0  1  1  0                            5 8 - 5 B H
+  0  1  0  1  1  1                            5 C - 5 F H
+  0  1  1  0  0  0                            6 0 - 6 3 H
+  0  1  1  0  0  1                            6 4 - 6 7 H
+  0  1  1  0  1  0                            6 8 - 6 B H
+  0  1  1  0  1  1                            6 C - 6 F H 
+  0  1  1  1  0  0                            7 0 - 7 3 H   
+  0  1  1  1  0  1                            7 4 - 7 7 H
+  0  1  1  1  1  0                            7 8 - 7 B H
+  0  1  1  1  1  1                            7 C - 7 F H
+.fo                           Page III-5
+.PAŠ.he                                               Section III
+                            Table 3-1
+
+
+                    I/O Port Addressing cont.
+
+
+       S-1                                      
+
+  Switch Positions                            Base I/O 
+
+  (0=closed/1=open)                          Port   Address
+
+  1  2  3  4  5  6
+--------------------------------------------------------------
+  1  0  0  0  0  0                            8 0 - 8 3 H
+  1  0  0  0  0  1                            8 4   8 7 H        
+  1  0  0  0  1  0                            8 8 - 8 B H 
+  1  0  0  0  1  1                            8 C - 8 F H
+  1  0  0  1  0  0                            9 0 - 9 3 H
+  1  0  0  1  0  1                            9 4 - 9 7 H
+  1  0  0  1  1  0                            9 8 - 9 B H
+  1  0  0  1  1  1                            9 C - 9 F H
+  1  0  1  0  0  0                            A 0 - A 3 H
+  1  0  1  0  0  1                            A 4 - A 7 H
+  1  0  1  0  1  0                            A 8 - A B H   
+  1  0  1  0  1  1                            A C - A F H
+  1  0  1  1  0  0                            B 0 - B 3 H
+  1  0  1  1  0  1                            B 4 - B 7 H
+  1  0  1  1  1  0                            B 8 - B B H
+  1  0  1  1  1  1                            B C - B F H
+  1  1  0  0  0  0                            C 0 - C 3 H
+  1  1  0  0  0  1                            C 4 - C 7 H
+  1  1  0  0  1  0                            C 8 - C B H
+  1  1  0  0  1  1                            C C - C F H
+  1  1  0  1  0  0                            D 0 - D 3 H
+  1  1  0  1  0  1                            D 4 - D 7 H
+  1  1  0  1  1  0                            D 8 - D B H
+  1  1  0  1  1  1                            D C - D F H
+  1  1  1  0  0  0                            E 0 - E 3 H
+  1  1  1  0  0  1                            E 4 - E 7 H
+  1  1  1  0  1  0                            E 8 - E B H
+  1  1  1  0  1  1                            E C - E F H 
+  1  1  1  1  0  0                            F 0 - F 3 H   
+  1  1  1  1  0  1                            F 4 - F 7 H
+  1  1  1  1  1  0                            F 8 - F B H
+  1  1  1  1  1  1                            F C - F F H
+.fo                           Page III-6
+.paŠ.he                                               Section III
+
+3.7                  BATTERY BACK-UP OPTION
+
+
+
+	Thå  LS-10° provideó á standbù poweò optioî thaô  caî  bå 
+useä  tï providå poweò tï thå LS-10° boarä wheî thå hosô computeò 
+ió turneä off®  Beforå thå hosô computeò ió turneä ofæ thå  Poweò 
+Dowî  writå protecô biô shoulä bå seô tï á "1¢ iî thå MSÂ Addresó 
+Registeò  (Biô ¶ oæ register-1)®  Thió wilì protecô thå datá froí 
+beinç accidentallù altereä wheî thå hosô computeò ió powereä  up® 
+Notå thaô thió biô ió seô tï á "0¢ wheî thå seô sectoò routinå ió 
+calleä  iî thå driveò software®  Aî externaì poweò sourcå caî  bå 
+connecteä  tï  thå LS-10° boarä aô thå ´ piî MOLEØ  connectoò  B² 
+locateä aô thå toğ lefô oæ thå board® Pinó ± anä ´ arå grounä anä 
+Pinó ² anä ³ arå power®  Á filtereä D.C®  poweò sourcå oæ ¸ tï 1° 
+voltó aô 80° MA® peò boarä ió required® 
+
+
+
+
+
+
+
+
+
+
+
+
+
+3.8                   STATUS LED INDICATORS
+
+
+     Thå  LS-10° haó twï LEÄ statuó indicatoró locateä aô thå toğ 
+lefô  centeò oæ thå board®  DSP-± ió thå accesó indicatoò anä  ió 
+onlù  oî  durinç thå actuaì datá reaä anä writå transfeò  cycles® 
+DSP-²  ió thå boarä selecô indicatoò anä wilì staù oî aó lonç  aó 
+thå boarä ió selected®   Theså LEDó providå á quicë visuaì  checë 
+foò propeò boarä addressinç anä operation.
+
+
+
+
+.fo                           Page III-7
+.paŠ.HE                                               Section IV
+
+                            SOFTWARE
+
+
+4.1                    DIAGNOSTIC PROGRAM
+
+     Thå  diagnostiã prograí provideó á meanó foò verifyinç  thaô 
+thå  LS-10° ió operational®  Wheî excuteä thå diagnostiã  prograí 
+wilì  asë  yoõ foò thå numbeò oæ thå LS-10° boarä  thaô ió tï  bå 
+tested® Thå memorù tesô wilì continuå tï ruî untiì interrupteä bù 
+pressinç anù keù oî thå consolå whicè  transferó controì tï CP/M® 
+Á  mağ oæ thå memorù arraù oî thå LS-10° boarä wilì bå  displayeä 
+afteò  eacè tesô pass®  Á "G¢ indicateó á gooä memorù chiğ anä  á 
+"B¢ indicateó á failinç memorù chip® Replacå anù baä memorù chipó 
+beforå continuing® 
+
+     Thå diagnostiã prograí  provideä haó á baså I/Ï porô addresó 
+oæ  D0H®  Iæ thió conflictó witè anù otheò boardó iî youò  systeí 
+thå  diagnostiã prograí wilì havå tï bå modified®  Tï changå  thå 
+baså  porô  address¬  ediô  thå diagnostiã  prograí  sourcå  filå 
+DIAG.ASÍ  anä changå thå PBASÅ equatå statemenô tï thå  ne÷  porô 
+addresó thaô yoõ havå selected® 
+
+     Assemblå thå filå witè ASÍ oò anù otheò compatiblå assembleò 
+anä  creatå á COÍ file®  Checë alì jumpeò optionó anä diğ  switcè 
+settings¬  anä instalì thå LS-10° boarä intï youò system® Bå surå 
+alì poweò ió ofæ wheî installinç oò removinç thå board®  Booô  uğ 
+CP/Í anä typå DIAG<cr>¬ thió wilì loaä anä executå thå diagnostiã 
+program®  
+
+4.1.1          SAMPLE DIAGNOSTIC PROGRAM SESSION
+
+A>DIAG
+               LS-100  MEMORY  DIAGNOSTIC  PROGRAM
+
+                   DIGITAL RESEARCH COMPUTERS
+                       ALL RIGHTS RESERVED
+                         COPYRIGHT 1983                       
+                            VER. 1.0 
+
+ENTER NUMBER OF BOARD TO TEST (1-8): 1
+
+PRESS ANY KEY TO EXIT TO CP/M
+
+TEST RESULTS FOR BOARD 1
+
+PASS NUMBER 0001H
+
+        DB0 DB1 DB2 DB3 DB4 DB5 DB6 DB7
+BANK-1   G   G   G   G   G   G   G   G
+BANK-2   G   G   G   G   G   G   G   G
+BANK-3   G   G   G   G   G   G   G   G
+BANK-4   G   G   G   G   G   G   G   G
+A>
+.fo                            Page IV-1
+.PAŠ.he                                               Section IV           
+
+
+                         SOFTWARE Cont.
+
+
+
+
+4.2                      FORMAT PROGRAM
+
+
+
+     Wheî poweò ió firsô applieä tï thå LS-10° boarä thå contentó 
+oæ  memorù will be randoí data®  Beforå thå boarä caî bå useä  iô 
+musô  firsô bå formatted®  Á formaô prograí ió supplieä   witè  á 
+defaulô baså I/Ï porô addresó oæ D0H®  Iæ thió conflictó witè anù 
+otheò  boardó iî youò systeí theî thå formaô prograí wilì havå tï 
+bå modified® 
+     
+     Tï changå thå baså I/Ï porô address¬  ediô thå formaô sourcå 
+prograí FMAT.ASÍ anä changå thå PBASÅ equatå statemenô tï thå ne÷ 
+porô addresó thaô yoõ havå selected®  Assemblå thå filå witè  ASÍ 
+oò  anù  otheò compatiblå assembleò anä creatå á  FMAT.COÍ  file® 
+Typå FMAT<cr¾ tï ruî thå formaô program®  
+
+     Thå  formaô  prograí  wilì searcè foò thå numbeò  oæ  LS-10° 
+boardó iî youò system¬  automaticallù format¬ anä theî verifù thå 
+reserveä checë suí areá foò aî 80H¬ anä thå datá areá foò aî E5H® 
+Thió  prograí dynamicallù formató thå LS-10° Boardó dependinç  oî 
+thå numbeò oæ boardó iî thå system®  Thereforå aó morå boardó arå 
+addeä tï thå systeí nï furtheò softwarå changeó arå required® 
+
+
+4.2.1             SAMPLE FORMAT PROGRAM SESSION
+
+
+A>FMAT
+                  LS-100  AUTO  FORMAT  PROGRAM
+
+                   DIGITAL RESEARCH COMPUTERS
+                       ALL RIGHTS RESERVED
+                         COPYRIGHT 1983
+                            VER. 1.0
+
+FORMATTING 1 LS-100 BOARD(S)
+VERIFYING FORMAT
+DONE
+A>
+.fo                            Page IV-2
+.paŠ.he                                               Section IV
+
+
+                         SOFTWARE Cont.
+
+
+
+
+4.3                      INSTALL PROGRAM
+
+
+
+     Thå  Instalì prograí ió actuallù twï programó combineä  intï 
+one¬  á relocatoò prograí anä thå driveò program®  Thå  relocatoò 
+prograí  ió  á  CP/Í coí filå ORGeä aô 100È whilå thå  driveò  ió 
+ORGeä jusô belo÷ thå CCĞ anä moveä tï 1000È (bù usinç DDT)®  Theî 
+thå driveò anä relocatoò prograí arå saveä  togetheò aó onå  filå 
+witè  thå  SAVÅ command®  Thå actuaì loaä addresó oæ  thå  driveò 
+dependó  oî thå CP/Í systeí sizå (MSIZE© equate¬  aó thå  instalì 
+prograí  moveó thå driveò modulå froí 1000È tï jusô belo÷ thå CCĞ 
+(CPMB)®  
+
+     Afteò  thå  driveò modulå ió iî place¬  thå CP/Í  BIOÓ  jumğ 
+tablå ió copieä tï á reserveä areá withiî thå driveò module¬  anä 
+theî  á  modifieä BIOÓ jumğ tablå witè pointeró intï  thå  driveò 
+modulå ió moveä tï thå originaì BIOÓ jumğ tablå area® Thió allowó 
+thå  driveò modulå tï intercepô  systeí calló tï thå  BDOS®   Thå 
+BDOÓ entrù poinô aô memorù locationó ¶ anä · arå  theî altereä tï 
+reflecô thå ne÷ TPÁ sizå protectinç thå driveò modulå (hopefuly)® 
+
+     Thió  ió  ho÷ CP/Í ió trickeä intï thinkinç thaô thå  LS-10° 
+boardó arå á disë drive®  Beforå yoõ caî ruî thå Instalì  prograí 
+yoõ  wilì havå tï ediô thå Instalì prograí anä thå driveò  modulå 
+anä seô thå followinç EQUATEÓ tï matcè youò  system® Bå surå thaô 
+botè  thå  instalì  prograí (INSTALL.ASM© anä thå  driveò  modulå 
+(DRV1.ASM© havå thå followinç identicaì parameters.
+
+               PBASE     EQU       (base  I/O port address)
+
+               MSIZE     EQU       (size of CP/M in Kilobytes)
+
+               DRVID     EQU       (drive #  1-15)
+
+     Afteò  yoõ havå assembleä thå driveò anä thå instalì prograí 
+lisô thå thå INSTALL.PRÎ filå anä obtaiî thå valuå oæ  DRV±  i.e® 
+foò  á 60Ë CP/Í SYSTEÍ DRV1=D000H®  Loaä thå instalì modulå  witè 
+DDÔ aó follows®  DDÔ INSTALL.HEX<cr>¬  thió wilì loaä thå Instalì 
+heø  filå aô 100H®  Nexô usinç thå heø caculatoò iî DDÔ finä  thå 
+offseô oæ thå driveò modulå froí 0H® H0,(valuå foò DRV1)<cr>® Adä 
+100°   heø  tï  thió  valuå  anä  uså  thió  offseô  aó  follows® 
+IDRV1.HEX<cr¾  R,(offset)®  Thió wilì loaä thå driveò  modulå  aô 
+1000H® No÷ savå thå twï moduleó bù typinç G° tï exiô DDÔ anä theî 
+typå  SAVÅ  1·  INSTALL.COÍ tï savå thå Instalì  prograí  oî  thå 
+loggeä iî drive.
+.fo                            Page IV-3
+.pa     Š.he                                               Section IV
+
+
+
+                      Install program cont.
+
+
+
+     Tï executå thå Instalì prograí typå INSTALL<cr>® Thå instalì 
+prograí  wilì  searcè  foò thå numbeò oæ LS-10°  boardó  iî  youò 
+systeí  anä dynamicallù instalì thå correcô drivå parameteò blocë 
+baseä  oî  thå  numbeò oæ boardó  iî  thå  system¬  automaticallù 
+increasinç  thå  amounô oæ storagå  provided®  (Seå  Tablå  1-1)®  
+Thereforå  aó  morå  boardó arå addeä tï thå  systeí  nï  furtheò 
+softwarå  changeó   arå required®  Thå driveò modulå  containó  á 
+checë suí routinå whicè calculateó á checë bytå foò eacè 12¸ bytå 
+pagå  oò  "sector¢  thaô ió writteî tï anä reaä froí  thå  LS-10° 
+boards®  Iæ  á  checë  suí  erroò occuró   aî  erroò  messagå  ió 
+displayeä reportinç whicè boarä thå erroò occureä on®  Thió  typå 
+oæ  erroò  ió mosô probablù causeä bù á failinç memorù  chip®  Iæ 
+thió happenó iô ió recommendeä thaô thå diagnostiã prograí bå ruî 
+oî  thå  failinç boarä tï locatå thå memorù chiğ thaô  ió  havinç 
+problems® 
+
+
+                 Customizing the Install program
+
+                 (This is for a 60K CP/M system)
+
+     Edit both DRV1.ASM, and INSTALL.ASM and set MSIZE=60
+     (Note: the default drive ID is drive E and the default
+            base I/O port address is D0H)
+     Assemble DRV1, and INSTALL to obtain a hex file for each
+     List the DRV1.PRN file and obtain the value for DRV1     
+     
+
+
+     DDÔ  INSTALL.HEX<cr¾    ;loaä heø filå intï memorù at 100H
+     H0,D000<cr¾             ;find offset from 0H. (D000H,3000H)
+     D000,3000               ;adä 1000È tï offset® (3000H+1000=4000H) 
+     IDRV1.HEX<cr>           ;prepare to read in driver module 
+     R,4000H<cr>             ;read with offset to place at 1000H
+     G0<cr>                  ;exit DDT
+     SAVÅ 1· INSTALL.COM<cr¾ ;savå botè instalì ¦ driveò aó oîe file
+
+.fo                            Page IV-4
+.PAŠ.he                                               Section IV
+
+
+4.4             INSTALL PROGRAM INCOMPATIBILITIES
+
+
+
+     Thå  Instalì prograí ió á fasô waù tï geô  thå LS-10°  boarä 
+uğ anä running¬  howeveò thió methoä haó somå inherenô  problems® 
+Aó  waó mentioneä abovå thå instalì prograí changeó thå TPÁ  sizå 
+bù  reducinç  thå  toğ oæ memorù pointeró aô  locationó ¶  anä  · 
+whicè  ió thå BDOÓ entrù point®  
+
+     Unfortunatelù  somå  programó maù ignorå thå toğ  oæ  memorù 
+pointeò  anä  overwritå thå driveò module®  Iæ  thió  happens¬  á 
+systeí  crasè ió inevitable®  Otheò problemó ariså  wheî  certaiî 
+programó  dï direcô disë I/Ï througè thå BIOÓ jumğ tablå  insteaä 
+oæ  usinç  thå CP/Í functioî calls®  Sucè programó arå fasô  disë 
+copiers®  
+     
+     Theså  typeó oæ programó wilì noô functioî properlù  aó  thå 
+LS-10°   formaô ió differenô froí thaô oæ á floppù disk®  Uså PIĞ 
+insteaä tï copù fileó froí drivå tï drivå anä theså problemó wilì 
+bå eliminated®  Alsï notå thaô á copù oæ CP/Í doeó noô residå  oî 
+thå  reserveä trackó aó witè floppù disë  drives®  Instead¬  thió 
+areá haó beeî reserveä foò thå checë suí bytes® Tï geô arounä thå 
+probleí  oæ  warí  bootinç froí thå emulateä  drive¬  thå  Driveò 
+prograí  modifieó thå warí booô routinå tï jumğ tï thå CCĞ  whicè 
+wilì loç iî thå emulateä drivå withouô re-readinç iî CP/Í aó  thå 
+CCĞ  shoulä  bå  protecteä  bù thå  reduceä   memorù  pointeò  aô 
+locationó  ¶  anä  7®  Thió  maù causå problemó  witè  somå  BIOÓ 
+routineó  thaô supporô densitù changeó iî thå warí booô  routine® 
+Tï  eliminatå  thió  typå oæ probleí wå suggesô thaô  thå  LS-10° 
+driveò modulå  bå integrateä intï youò BIOS®  
+
+
+
+4.4.1            SAMPLE INSTALL PROGRAM SESSION
+
+
+A>INSTALL
+                  LS-100  AUTO INSTALL PROGRAM
+
+                   DIGITAL RESEARCH COMPUTERS
+                       ALL RIGHTS RESERVED                         
+                         COPYRIGHT 1983 
+                            VER. 1.0
+
+DRIVER INSTALLED FOR 1 LS-100 BOARD(S)
+
+DRIVE E: ACTIVE
+
+A>
+
+
+.fo                            Page IV-5
+.paŠ.he                                               Section V
+
+
+5.1                   HOW TO USE THE LS-100
+     
+
+
+     Everù  timå  poweò ió applieä tï thå LS-10°  boarä  iô  musô  
+firsô  bå  formatteä  beforå  yoõ  caî uså iô  aó  á  disë  drivå 
+emulator®  Tï  formaô thå LS-10° ruî thå formaô prograí  FMAÔ  bù 
+typinç  FMAT<cr>®  Assuminç  alì  wenô welì thå nexô steğ  ió  tï 
+instalì thå softwarå driveò foò thå LS-100® Tï instalì thå driveò 
+ruî  thå  instalì  prograí bù  typinç  INSTALL<cr>®  Thå  instalì 
+prograí  aó supplieä installó thå LS-10° boarä oò boardó aó drivå 
+E®  Loç  oî  tï drivå Å anä uså thå DIÒ commanä tï  looë  aô  thå 
+directory®  Therå  shoulä bå nï fileó present®  Uså PIĞ tï copù á 
+texô  filå  tï thå LS-10° usinç  thå  verifù  option®  (i.e®  PIĞ 
+E:=A:TEST.TXT[V]© no÷ uså thå TYPÅ commanä tï lisô thå texô file® 
+Notå thaô noô onlù ió thå  LS-10° fasteò buô iô ió alsï silenô iî 
+operation®  Nexô assemblå somå programó notinç thå speeä aô whicè 
+theù  execute®  Dependinç  oî thå numbeò oæ  disë  accesses¬  thå 
+executioî speeä improvemenô caî bå froí · tï 1° timeó fasteò thaî 
+thaô  oæ á floppù disë drive¬  anä typicalù twicå aó fasô aó mosô 
+harä  disë  drives®  Thå LS-10° provideó aî econimicaì  meanó  of 
+increasing systeí performance®  
+.fo                            Page V-1
+.paŠ.he                                               Section VI
+
+
+6.1           LS-100 I/O PORT REGISTER DESCRIPTION
+
+
+
+     Controì   oæ  thå  LS-10°  boarä   ió  donå   througè   fouò 
+consecutivå I/Ï ports® Theiò operatioî ió described aó followó :
+
+
+     REGISTER-°     DATÁ TRANSFER PORÔ       (8 BITS)    READ/WRITE
+
+     REGISTER-±     MSÂ ADDRESÓ REGISTER     (7 BITS)    WRITÅ ONLY
+
+     REGISTER-²     LSÂ ADDRESÓ REGISTER     (8 BITS)    WRITÅ ONLY
+
+     REGISTER-³     BYTÅ LOCATIOÎ REGISTER   (7 BITS)    WRITÅ ONLY
+
+
+
+6.1.1     REGISTER-°    DATÁ TRANSFER PORÔ   
+
+                        (BASÅ ADDRESS+0)
+
+     Thå  datá  porô  provideó thå meanó  foò  transferrinç  datá 
+betweeî  thå  hosô  computeò  anä  thå  LS-10°  board®   Datá  ió 
+transferreä   bù   usinç   thå  processoró   inpuô   anä   outpuô 
+instructions®   Readinç   oò  writinç  tï  thå  datá  porô   alsï 
+automaticallù  incrementó thå bytå locatioî addresó  registeò  bù 
+one¬  addressinç  thå   nexô  bytå withiî thå 12¸  bytå  pagå  oò 
+"sector".
+
+
+
+6.1.2     REGISTER-1    MSB ADDRESS REGISTER   
+
+                        (BASE ADDRESS+1)
+
+     Registeò onå ió á seveî biô writå onlù registeò anä provideó 
+thå mosô significanô addresó anä poweò dowî modå selection® Biô · 
+oæ  thió  registeò ió noô useä anä ió noô connected®  Biô ¶  wheî  
+seô tï á onå selectó thå poweò dowî writå protecô mode®  Bitó µ - 
+³  arå  addresó bitó A2° - A1¸ anä providå á onå oæ  eighô  boarä 
+decode®  Bitó ² - ± arå addresó bitó A1· - A1¶ anä provideó á onå 
+oæ fouò banë decode® Biô ° ió addresó biô A1µ oæ thå memorù arraù 
+oî thå LS-10° board®  Thå CPÕ datá buó ió noô driveî wheî readinç 
+froí thió register.
+
+.fo                            Page VI-1
+.PAŠ
+
+               I/O port register description cont.
+
+
+
+6.1.3     REGISTER-2    LSB ADDRESS REGISTER    
+
+                        (BASE ADDRESS+2)
+
+     Registeò twï ió aî eighô biô writå onlù register® Bitó · - ° 
+arå  memorù addresó bitó A1´ - A· tï thå memorù arraù oî thå  LS-
+10°  board®  Writinç  tï thió registeò clearó thå  bytå  locatioî 
+addresó  counteró  tï zero®  Thå CPÕ datá buó ió noô driveî  wheî 
+readinç froí thió register.
+
+
+
+6.1.4     REGISTER-3    BYTE LOCATION ADDRESS REGISTER
+
+                        (BASE ADDRESS+3)
+
+     Registeò  threå  ió  aî  · biô  writå  onlù  registeò  whicè 
+provideó  thå capabilitù tï addresó á bytå withiî á 12¸ bytå pagå 
+oò  "sector"®  Biô  ·  oæ thió registeò ió noô useä  anä  ió  noô 
+connected®  Bitó  ¶  - ° arå addresó bitó A¶ - A° tï  thå  memorù 
+arraù  oî thå LS-10° board®  Thå CPÕ datá buó ió noô driveî  wheî 
+readinç froí thió register.
+.fo                            Page VI-2
+.paŠ.he                                               Section VI
+
+6.2                     BIOS INTEGRATION
+
+
+     Aî  instalì  prograí  haó  beeî provideä  witè  thå  LS-100® 
+Howeveò iô ió besô tï incorporatå thå LS-10° driveò directlù intï 
+youò  BIOS®  Thió maù oò maù noô bå á trivaì tasë baseä  oî  youò 
+experiencå  witè  CP/Í anä assemblù languagå programming®  Iô  ió 
+mosô  importanô  thaô  yoõ havå á sourcå  listinç  oæ  youò  BIOÓ 
+beforå attemptinç modification® Iæ yoõ havå neveò modifieä á BIOÓ 
+beforå  theî  obtaiî  á copù oæ thå CP/Í  alteratioî  guidå  froí 
+DIGITAÌ RESEARCH® Sectioî ³  oæ thå alteratioî guidå wilì providå 
+alì thå nessarù informatioî tï regeneratå youò BIOS.
+
+
+     Thå  followinç  exampleó  havå  beeî  provideä  tï  aiä  thå  
+systemó programmeò tï integratå thå LS-10° driveò modulå directlù 
+intï thå BIOS® 
+
+»     DRVIÄ ió Equateä tï thå numbeò oæ thå drivå thaô thå LS-10° 
+;boarä  wilì emulate®  Thió shoulä bå thå nexô logicaì  drivå  iî 
+;youò  system®  Foò á ² drivå systeí DRVIÄ woulä bå seô tï 0² foò 
+;drivå C® 
+;
+DRVID     EQU       (01-15)        ;DRIVE ID. (B-P)
+;
+;    The following equates define the LS-100 hardware
+;
+PBASE     EQU       0D0H           ;DEFAULT BASE PORT ADDRESS
+REG0      EQU       PBASE          ;DATA TRANSFER PORT
+REG1      EQU       PBASE+1        ;MSB ADDRESS REGISTER
+REG2      EQU       PBASE+2        ;LSB ADDRESS REGISTER
+REG3      EQU       PBASE+3        ;BYTE LOCATION REGISTER
+NBYTES    EQU       128            ;BYTES/TRANSFER (FIXED)
+;
+;
+;
+»    Thió routinå checkó thå activå drivå bytå tï seå iæ thå BDOÓ 
+;is accessing the LS-100 board.
+;
+CHECK:    LDA       UNIT           ;GET ACTIVE #
+          CPI       DRVID          ;CHECK FOR LS-100
+          RET
+.fo                            Page VI-3
+.paŠ.he                                               Section VI
+
+
+;
+»    Thå  heaä  homå routinå ió modifieä tï checë foò thå  LS-10° 
+;boarä anä conditionallù skiğ thå floppù disë controlleò routine® 
+;Thå  LS-10° boarä haó nï heaä tï homå howeveò thå tracë bytå  ió 
+;seô tï zero® 
+;
+;HEAD HOME ROUTINE
+;
+HOME:     CALL      CHECK          ;CHECK FOR LS-100
+          JZ        HME1           ;JUMP IF LS-100 IS ACTIVE
+          .                        ;NORMAL CODE
+          .                        ;CONTINUES
+          .
+HME1:     XRA       A
+          STA       TRK            ;SET TRACK TO 0
+          RET                      ;NORMAL RETURN
+
+»      Thå sectoò translatå routinå ió modifieä aó followó aó thå 
+;LS-10° doeó noô requirå sectoò translation.
+;
+;SECTOR TRANSLATE ROUTINE
+;
+SCTRL:    CALL      CHECK          ;CHECK FOR LS-100
+          JZ        SCTRL2         ;JUMP IF SO
+          .                            
+          .                        ;NORMAL CODE
+          .                        ;CONTINUES
+          .
+          RET                      ;NORMAL RETURN
+;
+SCTRL2:   MOV       H,B            ;TRANSLATION
+          MOV       L,C            ;NOT REQUIRED
+          RET
+
+;
+;READ SECTOR ROUTINE
+;
+READ:     CALL      CHECK          ;CHECK FOR LS-100
+          JZ        RD100          ;LS-100 SECTOR READ
+          .
+          .                        ;NORMAL CODE
+          .                        ;CONTINUES
+          .
+          RET                      ;NORMAL RETURN
+.fo                             Page VI-4
+.paŠ.he                                               Section VI
+
+
+;
+;WRITE SECTOR ROUTINE
+;
+WRITE:    CALL      CHECK          ;CHECK FOR LS-100
+          JZ        WR100          ;LS-100 SECTOR WRITE
+          .
+          .                        ;NORMAL CODE
+          .                        ;CONTINUES
+          .
+          RET                      ;NORMAL RETURN
+
+»     Thió  routinå setó uğ thå addresó registeró oî  thå  LS-10° 
+;boarä foò á 12¸ bytå pagå oò "sector¢ datá transfer® Alsï thå HÌ 
+;registeò  paiò ió loadeä witè thå DMÁ addresó foò thå  transfer® 
+;Registeò  Â ió loadeä witè thå numbeò oæ byteó peò pagå anä  thå 
+;checë suí Registeò (E© ió cleareä tï zero® 
+;
+;
+SETUP:    LDA       TRACK          ;GET CURRENT TRACK #
+          OUT       REG2           ;SET LSB ADDRESS REGISTER
+          LDA       SECTOR         ;GET CURRENT SECTOR #
+          OUT       REG1           ;SET MSB ADDRESS REGISTER
+          LHLD      TADDR          ;HL=ADDRESS OF TRANSFER BUFFER
+          MVI       B,NBYTES       ;B=BYTES/SECTOR
+          MVI       E,0            ;CLEAR CHECK SUM BYTE
+          RET
+;
+»     Thió  routinå  setó  thå addresó registers¬  anä  thå  bytå 
+;locatioî  registeò baseä oî thå currenô tracë numbeò anä  sectoò 
+;numbeò  iî  preparatioî tï storå oò retrievå thå checë  suí  bytå 
+;thaô ió computeä oî eacè 12¸ bytå pagå oò "sector"®  
+;
+;
+CALC:     LXI       TRACK          ;SET HL @ TRACK #
+          XRA       A              ;CLEAR A, AND CARRY FLAG
+          OUT       REG2           ;SET LSB ADDRESS REGISTER
+          MOV       A,M            ;GET CURRENT TRACK #
+          RLC                      ;MOD. 128
+          JNC       SKP1           ;JUMP IF <128
+          MVI       A,1            ;GET RESERVED TRACK #
+          OUT       REG2           ;SET LSB ADDRESS REGISTER
+SKP1:     MOV       A,M            ;GET CURRENT TRACK #
+          OUT       REG3           ;SET BYTE LOCATION REGISTER
+          RET
+.fo                             Page VI-5
+.paŠ.he                                               Section VI
+
+
+;
+»     Thió routinå readó 12¸ byteó froí thå LS-10° boarä  storinç 
+;thå datá iî thå memorù buffeò pointeä tï bù HÌ  anä compareó thå 
+;computeä  checë suí bytå witè thå valuå storeä iî  thå  reserveä 
+;checë  suí areá oî thå LS-10° board®  Thå normaì CP/Í returî  ió 
+;witè thå Ú flaç ½ ± anä thå erroò returî ió witè thå Ú flaç ½ 0.
+;
+;LS-100 SECTOR READ ROUTINE
+;
+RD100:    CALL      SETUP          ;SETUP REGISTERS FOR TRANSFER
+RDLP:     IN        REG0           ;GET DATA FROM LS-100
+          MOV       M,A            ;STORE @HL
+          ADD       E              ;COMPUTE CHECK SUM
+          MOV       E,A            ;ACCUMULATE IN E
+          DCR       B              ;DECREMENT BYTE COUNTER
+          JNZ       RDLP           ;UNTIL ZERO
+          CALÌ      CALÃ           ;SETUĞ ADDRESÓ OÆ CHECË SUM BYTE
+          IN        REG0           ;GET CHECK SUM BYTE
+          SUB       E              ;CHECK FOR ERROR
+          RET                      ;SHOULD BE 0
+
+»      Thió  routinå  writeó  12¸ byteó froí  thå  memorù  buffeò 
+;pointeä tï bù HÌ tï thå LS-10° board¬  computeó á checë suí bytå 
+;anä  storeó thå checë suí bytå iî thå reserveä checë suí areá oî 
+;thå LS-10° board.
+;
+;
+;LS-100 WRITE SECTOR ROUTINE
+;
+WR100:    CALL      SETUP          ;SETUP REGISTERS FOR TRANSFER
+WRLP:     MOV       A,M            ;GET DATA FROM BUFFER
+          OUT       REG0           ;STORE DATA
+          ADD       E              ;COMPUTE CHECK SUM
+          MOV       E,A            ;ACCUMULATE CHECK SUM IN E
+          INX       H              ;INCREMENT POINTER
+          DCR       B              ;DECREMENT BYTE COUNTER
+          JNZ       WRLP           ;UNTIL ZERO
+          CALÌ      CALÃ           ;SEÔ UĞ ADDRESÓ OÆ CHECË SUM BYTE
+          MOV       A,E            ;GET CHECK SUM BYTE
+          OUT       REG0           ;WRITE CHECK SUM BYTE
+          XRA       A              ;CLEAR ERROR FLAG
+          RET                      ;NORMAL RETURN
+.fo                            Page VI-6
+.PAŠ.he                                               Section VI
+
+
+
+»     Thå  followinç provideó thå disë parameteò informatioî useä 
+;bù  thå SELDISË routinå foò ± LS-10° board®  Refeò tï tablå  6-1 
+;foò drivå parameteró foò uğ tï ¸ LS-10° boards.
+;
+;(X) IS THE LOGICAL DRIVE NUMBER IE. 1=B/2=C/3=D...ETC.
+;
+DPE(X):   DW        XLT(X),0000H   ;TRANSLATE TABLE
+          DW        0000H,0000H    ;SCRATCH AREA
+          DW        DIRBUF,DPB(X)  ;DIR.BUF./PARM. BLOCK
+          DW        CSV(X),ALV(X)  ;CHECK ALLOC. VECTORS
+
+DPB(X):	  DW	    8	           ;SECTORS/TRACK
+	  DB        4	           ;BLOCK SHIFT
+	  DB        15             ;BLOCK MASK
+	  DB         1             ;EXTNT. MASK
+	  DW       126             ;DISK SIZE-1
+	  DW       127             ;MAX. DIRECTORY ENTRIES
+	  DB       192             ;ALLOC0
+	  DB         0             ;ALLOC1
+	  DW         0             ;CHECK SIZE
+	  DW         2             ;OFFSET
+
+
+;
+;REQUIRED STORAGE MUST BE IN RAM
+;
+ALV(X)º   DÓ        6´             ;ALLOCATIOÎ  VECTOÒ  FOÒ  ¸ BOARDS
+CSV(X):   DS        0              ;ZERO CHECKED DIR. ENTRIES
+
+.fo                            Page VI-7
+.paŠ.he                                               Section VI
+
+
+6.3             TABLE  6-1  DISK PARAMETER BLOCKS
+
+
+
+;
+;PARAMETERS FOR 1 BOARD
+;
+DPB(X):	DW	8		;SECTORS/TRACK
+	DB	4		;BLOCK SHIFT
+	DB	15		;BLOCK MASK
+	DB	1		;EXTNT. MASK
+	DW	126		;DISK SIZE-1
+	DW	127		;MAX. DIRECTORY ENTRIES
+	DB	192		;ALLOC0
+	DB	0		;ALLOC1
+	DW	0		;CHECK SIZE
+	DW	2		;OFFSET
+
+
+
+
+
+;
+;PARAMETERS FOR 2 BOARDS
+;
+DPB(X):	DW	16		;SECTORS/TRACK
+	DB	4		;BLOCK SHIFT
+	DB	15		;BLOCK MASK
+	DB	1		;EXTNT. MASK
+	DW	253		;DISK SIZE-1
+	DW	127		;MAX. DIRECTORY ENTRIES
+	DB	192		;ALLOC0
+	DB	0		;ALLOC1
+	DW	0		;CHECK SIZE
+	DW	2		;OFFSET
+.fo                            Page VI-8
+.PAŠ.he                                               Section VI
+
+
+                         TABLE 6-1 Cont.
+
+
+
+;
+;PARAMETERS FOR 3 BOARDS
+;
+DPB(X):	DW	24		;SECTORS/TRACK
+	DB	5		;BLOCK SHIFT
+	DB	31		;BLOCK MASK
+	DB	3		;EXTNT. MASK
+	DW	189		;DISK SIZE-1
+	DW	255		;MAX. DIRECTORY ENTRIES
+	DB	192		;ALLOC0
+	DB	0		;ALLOC1
+	DW	0		;CHECK SIZE
+	DW	2		;OFFSET
+
+
+
+
+;
+;PARAMETERS FOR 4 BOARDS
+;
+DPB(X):	DW	32		;SECTORS/TRACK
+	DB	5		;BLOCK SHIFT
+	DB	31		;BLOCK MASK
+	DB	3		;EXTNT. MASK
+	DW	253		;DISK SIZE-1
+	DW	255		;MAX. DIRECTORY ENTRIES
+	DB	192		;ALLOC0
+	DB	0		;ALLOC1
+	DW	0		;CHECK SIZE
+	DW	2		;OFFSET
+.fo                            Page VI-9
+.PAŠ.he                                               Section VI
+
+
+                         TABLE 6-1 Cont.
+
+
+
+;
+;PARAMETERS FOR 5 BOARDS
+;
+DPB(X):	DW	40		;SECTORS/TRACK
+	DB	6		;BLOCK SHIFT
+	DB	63		;BLOCK MASK
+	DB	7		;EXTNT. MASK
+	DW	157		;DISK SIZE-1
+	DW	511		;MAX. DIRECTORY ENTRIES
+	DB	192		;ALLOC0
+	DB	0		;ALLOC1
+	DW	0		;CHECK SIZE
+	DW	2		;OFFSET
+
+
+
+
+;
+;PARAMETERS FOR 6 BOARDS
+;
+DPB(X):	DW	48		;SECTORS/TRACK
+	DB	6		;BLOCK SHIFT
+	DB	63		;BLOCK MASK
+	DB	7		;EXTNT. MASK
+	DW	189		;DISK SIZE-1
+	DW	511		;MAX. DIRECTORY ENTRIES
+	DB	192		;ALLOC0
+	DB	0		;ALLOC1
+	DW	0		;CHECK SIZE
+	DW	2		;OFFSET
+.fo                           Page VI-10
+.PAŠ.he                                               Section VI
+
+
+                         TABLÅ 6-1 Cont.
+
+
+
+;
+;PARAMETERS FOR 7 BOARDS
+;
+DPB(X):	DW	56		;SECTORS/TRACK
+	DB	6		;BLOCK SHIFT
+	DB	63		;BLOCK MASK
+	DB	7		;EXTNT. MASK
+	DW	221		;DISK SIZE-1
+	DW	1023		;MAX. DIRECTORY ENTRIES
+	DB	240		;ALLOC0
+	DB	0		;ALLOC1
+	DW	0		;CHECK SIZE
+	DW	2		;OFFSET
+
+
+
+
+;
+;DISK PARAMETERS FOR 8 BOARDS
+;
+DPB(X):	DW	64		;SECTORS/TRACK
+	DB	6		;BLOCK SHIFT
+	DB	63		;BLOCK MASK
+	DB	7		;EXTNT. MASK
+	DW	253		;DISK SIZE-1
+	DW	1023		;MAX. DIRECTORY ENTRIES
+	DB	240		;ALLOC0
+	DB	0		;ALLOC1
+	DW	0		;CHECK SIZE
+	DW	2		;OFFSET
+
+.fo                           Page VI-11
+.PAŠ.HE                                               Section VII
+
+
+
+7.1             Basic Theory of Circuit Operation
+
+
+7.1.1  I/O PORT SELECT AND REGISTER DECODE
+
+     Z2²  bufferó  datá bitó D0-D· froí thå CPÕ datá buó ontï thå 
+board® Z2° provideó thå baså porô I/Ï addresó decodå bù comparinç 
+addresó bitó A2-A· tï thå valuå selecteä bù diğ switcè  S1®  Wheî 
+Z2° decodeó á valiä address¬   Z2° piî ¹ wilì gï lo÷ enablinç thå 
+duaì ± oæ ´ decodeò Z18® Z18,Z15,Z17¬ anä Z1° decodå addresó bitó 
+A0¬  anä A± alonç witè SINP¬  SOUT¬  PWR¬ anä PBDIÎ providinç thå 
+I/Ï registeò reaä writå portó selecô signaló X0-X3® 
+
+7.1.2  BYTE LOCATION ADDRESS REGISTER
+
+     Z12¬  anä  Z1³ forí á · biô loadablå counter¬  thaô  providå 
+addresó  bitó  AL0-AL¶ tï Z7®  Theså counteró arå incrementeä  oî 
+eacè   datá  transfeò   bù  thå XACË  signaì  froí  Z·  whicè  ió 
+generateä bù readinç oò writinç tï thå datá transfeò porô addresó 
+X0®  Theså  counteró  caî alsï bå loadeä witè á ·  biô  valuå  bù 
+writinç tï addresó X3¬  oò cleareä tï zerï bù writinç tï  addresó 
+X2® 
+
+7.1.3  MSB, LSB ADDRESS REGISTER AND BOARD SELECTION
+
+     Wheî  thå  CPÕ writeó tï addresó X2¬  Z1± wilì  latcè  D0-D· 
+providinç  addresó  bitó AL7¬  anä AH0-AH¶ tï Z7®  Wheî  thå  CPÕ 
+writeó  tï  baså  addresó X1¬  Z1´ wilì latcè  datá  bitó  D0-D7¬ 
+providinç AH7¬  anä B° tï Z7®  Z1´  alsï provideó á ³ biô addresó 
+tï  Z3®   Z³  alonç  witè diğ switcè S² providå á ±  oæ  ¸  boarä 
+selection®  Wheî  Z1¶  piî  ¹ ió lo÷ statuó LEÄ DS²  wilì  bå  oî 
+indicatinç thaô thå boarä ió selected¬ anä alsï enablinç thå reaä 
+anä writå requesô signaló tï Z7® 
+
+7.1.4  RAS SIGNAL DECODE AND WAIT STATE GENERATION
+
+     Z5¬  Z4¬  anä Z¹ provideó thå ± oæ ´ RAÓ banë decodå signaló 
+RAS0-RAS³ tï thå memorù array® Z7¬ anä Z¶ introducå thå necessarù 
+waiô  stateó bù holdinç thå PRDÙ signaì lo÷ untiì valiä datá   ió 
+reaä ouô oæ thå memorù bù Z7® DS² provideó aî accesó indicatoò bù 
+monitorinç  thå statå oæ thå oî boarä readù signal®  Z2³  latcheó 
+thå  datá  thaô ió reaä  ouô oæ thå memorù arraù anä  driveó  thå 
+DATÁ IÎ buó (DI0-DI7© tï thå CPU® 
+
+7.1.5  DYNAMIC RAM MEMORY CONTROL
+
+     Thå  820³ controlleò (Z7© provideó alì timinç anä  addresseó 
+tï thå 64Ë dynamiã rams¬  foò morå informatioî  oî thå  operatioî 
+oæ  thå  820³  Dynamiã raí controlleò refeò tï thå  Inteì  Memorù 
+Componentó Handbook.
+.fo                           Page VII-1
+.paŠ.HE                                               APPENDIX I
+
+
+
+                         ERROR MESSAGES
+
+
+
+Error Message                               Meaning
+
+
+
+NO BOARDS FOUND                     
+                                    No LS-100 boards could be
+                                    located in the system. Check
+                                    dip switchs S-1 and S-2 to
+                                    be sure that they are set to 
+                                    the values as equated in the 
+                                    driver and install programs.    
+
+
+
+NUMBER OF BOARDS FOUND EXCEED LIMIT  
+                                     The maximun number of LS-100
+                                     boardó alloweä tï á grouğ of
+                                     I/O ports is 8. Check to be
+                                     sure that no other boards in
+                                     thå systeí arå using anù oæ 
+                                     thå I/O ports that you have 
+                                     selected for the LS-100 boards.
+
+
+
+RELOCATION ERROR CAN'T LOAD DRIVER
+                                     The Install program checks
+                                     memory locations 6 and 7 for
+                                     the BDOS value as equated 
+                                     in the software® Eitheò thå 
+                                     CP/Í size is equated wrong or
+                                     another overlay program has
+                                     changed the top of memory
+                                     pointeò aô locationó ¶ anä 7.
+
+
+CP/M 2.0 OR BETTER REQUIRED
+
+                                    CP/Í  Ver® 2.° - 2.² is required
+                                    in order to use the Install   
+                                    program and driver overlay.
+
+.fo                          APPENDIX I
+.pa
