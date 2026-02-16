@@ -16,11 +16,11 @@ The author purchased and built the kit in July 1984 for CDN$182.
 
 ## CBIOS for the Exidy Sorcerer and Morrow DJ2D
 
-To properly use the board it needs to be integrated into the BIOS of a CP/M 2.2 system so that the board appears as a RAM-based floppy disk drive. That CBIOS is available [herein](/Src/Morrow DJ2D + Exidy Sorcerer CBIOS with LS-100 support - v4.0.mac).
+To properly use the board it needs to be integrated into the BIOS of a CP/M 2.2 system so that the board appears as a RAM-based floppy disk drive. That CBIOS is available [herein](<Src/Morrow%20DJ2D%20%2B%20Exidy%20Sorcerer%20CBIOS%20with%20LS-100%20support%20-%20v4.0.mac>).
 
 ## Product Manual
 
-The author has scanned in his original [product manual](/docs/'Light Speed 100' 256k disk simulator manual - 1983.pdf) for reference. 
+The author has scanned in his original [product manual](<Docs/'Light%20Speed%20100'%20256k%20disk%20simulator%20manual%20-%201983.pdf>) for reference. 
 
 ## Schematics
 
